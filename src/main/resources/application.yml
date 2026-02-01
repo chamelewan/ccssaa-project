@@ -30,7 +30,6 @@ jwt:
 # Swagger 설정
 springdoc:
   swagger-ui:
-    path: /swagger-ui.html
     tags-sorter: alpha
     operations-sorter: alpha
   api-docs:
