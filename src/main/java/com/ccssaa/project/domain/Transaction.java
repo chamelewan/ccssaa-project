@@ -77,6 +77,9 @@ public class Transaction {
     
     @PrePersist
     private void validateTransaction() {
+        if (buyer == null || seller == null) {
+            throw new IllegalArgumentException("Buyer and seller must not be null");
+        }
         if (buyer.getId().equals(seller.getId())) {
             throw new IllegalArgumentException("Buyer and seller cannot be the same user");
         }
