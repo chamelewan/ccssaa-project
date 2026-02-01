@@ -39,9 +39,3 @@ springdoc:
   show-actuator: false
   packages-to-scan: com.ccssaa.project.controller
   paths-to-match: /api/**
-  
-# 로깅 설정
-logging:
-  level:
-    org.springdoc: DEBUG
-    org.springframework.web: DEBUG
