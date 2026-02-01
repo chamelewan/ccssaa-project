@@ -14,6 +14,7 @@ ICT B트랙 자율 주제 프로젝트 - 당근마켓 스타일의 중고 거래
 - **Security**: Spring Security + JWT
 - **Database**: MySQL 8.0
 - **ORM**: JPA/Hibernate
+- **API Documentation**: SpringDoc OpenAPI (Swagger UI)
 - **Build Tool**: Gradle
 - **Language**: Java 17
 
@@ -102,11 +103,18 @@ ccssaa-project/
 ## 🚀 실행 방법
 
 ### 1. 데이터베이스 설정
+
+#### 프로덕션 환경 (MySQL)
 ```sql
 CREATE DATABASE ccssaa_db;
 ```
 
+#### 테스트 환경 (H2 인메모리 DB)
+별도 설정 불필요 - 자동으로 H2 데이터베이스 사용
+
 ### 2. application.yml 설정
+
+프로덕션 환경에서는 `src/main/resources/application.yml` 파일의 데이터베이스 설정 수정:
 ```yaml
 spring:
   datasource:
@@ -116,16 +124,56 @@ spring:
 ```
 
 ### 3. 빌드 및 실행
+
+#### 프로덕션 환경
 ```bash
 ./gradlew clean build
 ./gradlew bootRun
 ```
 
+#### 테스트 환경 (H2 DB 사용)
+```bash
+./gradlew bootRun --args='--spring.profiles.active=test'
+```
+
+### 4. Swagger UI 접속
+
+애플리케이션 실행 후 브라우저에서 다음 URL로 접속:
+
+**Swagger UI**: http://localhost:8080/swagger-ui/index.html
+
+또는
+
+**Alternative URL**: http://localhost:8080/swagger-ui.html
+
+**API Docs (JSON)**: http://localhost:8080/v3/api-docs
+
+자세한 Swagger UI 사용 방법은 [Swagger UI 가이드](./docs/SWAGGER_UI_GUIDE.md)를 참고하세요.
+
 ---
 
 ## 📝 API 명세
 
-API 문서는 추후 추가 예정 (Swagger/SpringDoc 적용)
+### Swagger UI로 확인
+
+애플리케이션 실행 후 **Swagger UI**에서 모든 API 명세를 확인할 수 있습니다:
+
+- **URL**: http://localhost:8080/swagger-ui/index.html
+- **상세 가이드**: [Swagger UI 사용 가이드](./docs/SWAGGER_UI_GUIDE.md)
+
+### 주요 API 엔드포인트
+
+#### User API (사용자 API)
+- `POST /api/users/register` - 회원가입
+- `POST /api/users/login` - 로그인 (JWT 토큰 발급)
+
+#### Product API (상품 API)
+- `GET /api/products` - 전체 상품 목록 조회
+- `POST /api/products` - 상품 등록
+- `GET /api/products/{id}` - 상품 상세 조회
+- `GET /api/products/selling` - 판매중인 상품 목록 조회
+
+모든 API는 Swagger UI에서 직접 테스트할 수 있습니다.
 
 ---
 
