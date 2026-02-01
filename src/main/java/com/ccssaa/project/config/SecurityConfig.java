@@ -26,7 +26,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/users/register", "/api/users/login").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                .requestMatchers("/api/products/**").permitAll() // 임시로 전체 허용
+                .requestMatchers("/api/products/**").permitAll() // TODO: Implement JWT authentication for product endpoints
                 .anyRequest().authenticated()
             );
 

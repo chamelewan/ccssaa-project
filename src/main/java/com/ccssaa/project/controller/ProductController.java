@@ -24,7 +24,7 @@ public class ProductController {
     @Operation(summary = "상품 등록", description = "새로운 상품을 등록합니다.")
     @PostMapping
     public ResponseEntity<ApiResponse<ProductResponse>> createProduct(
-            @RequestParam Long sellerId,
+            @RequestParam Long sellerId,  // TODO: Extract from JWT token instead of request parameter
             @Valid @RequestBody ProductCreateRequest request) {
         ProductResponse response = productService.createProduct(sellerId, request);
         return ResponseEntity.ok(ApiResponse.success("상품이 등록되었습니다.", response));
